@@ -14,13 +14,11 @@ class race_100meter:
     def __eq__(self, other):
         if self.score > other.score:
             return "you have a higher score"
-        elif self.score == other.score:
+        elif self.score < other.score:
             return "you have a lower score"
         else:
             return "you have an equal score"
 
-
-    
     def getsname(self):
         print(self.name)
 
@@ -94,6 +92,7 @@ while logout == False:
 
 
         
+
 
 
 
