@@ -89,97 +89,6 @@ def register():
             print("Note: Please enter the score in METERS (m)")
             return new_name, 4199, new_score, "", "", "", "", "", "", new_house.lower(), "longjump"
 
-def check():
-    try:
-            user_ID = input("Please insert your ID: ")
-            if int(user_ID) != int(user.id):
-                print("Non-existent UID")
-            else:
-                print("")
-                user.getname()
-                user.getid()
-                user.gethouse()
-                user.getscore()
-                if 3000 <= int(user_ID) < 4000 and isinstance(user, race_400mrelay):
-                    user.getteam()
-                    if hasattr(user, 'get_total_team_score'):
-                        print(f"Total team score: {user.get_total_team_score()} {user.get_unit()}")
-                    print("\nTeammates:")
-                    for i, teammate in enumerate(user.teammates, 1):
-                        print(f"   {i}. {teammate.name} - Score: {teammate.score} {teammate.get_unit()}")
-                print("")
-        except ValueError:
-            print("Invalid ID format. Please enter numbers only.")
-
-
-def comparsion():
-    try:
-            user_ID = input("Please insert your ID: ")
-            if int(user_ID) != int(user.id):
-                print("Non-existent UID")
-            else:
-                same_race_participants = [p for p in participants_by_race.get(user.get_race_type(), []) if p.name != user.name]
-                
-                if isinstance(user, race_400mrelay) and user.teammates:
-                    for teammate in user.teammates:
-                        if teammate not in same_race_participants and teammate.name != user.name:
-                            same_race_participants.append(teammate)
-                
-                if not same_race_participants:
-                    print(f"\nNo other participants found in {user.get_race_type()} to compare with")
-                    continue
-                
-                print(f"\nAvailable {user.get_race_type()} participants to compare:")
-                print("-" * 50)
-                for i, p in enumerate(same_race_participants, 1):
-                    print(f"{i}. {p.name:15}\tScore: {p.score:6.2f} {p.get_unit():5}\tHouse: {p.house}")
-                
-                rival_name = input("\nPlease enter the name of the person you'd like to compare: ")
-                rival = participants_dict.get(rival_name.lower())
-                
-                if rival:
-                    if not user.can_compare(rival):
-                        print(f"\nCannot compare {user.get_race_type()} with {rival.get_race_type()}!")
-                        print(f"   {user.name} participates in {user.get_race_type()} ({user.score} {user.get_unit()})")
-                        print(f"   {rival.name} participates in {rival.get_race_type()} ({rival.score} {rival.get_unit()})")
-                        print("   You can only compare participants from the same event.")
-                    else:
-                        comparison_result = user.__eq__(rival)
-                        print(f"\nComparison result: {comparison_result}")
-                        
-                        try:
-                            print("")
-                            print(f"{user.name} ({user.get_race_type()}): {user.score} {user.get_unit()}")
-                            print(f"{rival.name} ({rival.get_race_type()}): {rival.score} {rival.get_unit()}")
-                            print("")
-                            
-                            # USING POLYMORPHISM - using the overloaded operators!
-                            if user < rival:  # user wins if they are "less than" rival
-                                print(f"WINNER: {user.name} with {user.score} {user.get_unit()}!")
-                                if user.get_race_type() == "long_jump":
-                                    print(f"   {user.name} jumped {user.score - rival.score:.2f}m further than {rival.name}")
-                                else:
-                                    # For track, user has lower (better) score, so rival.score - user.score is positive
-                                    print(f"   {user.name} was {rival.score - user.score:.2f}{user.get_unit()} faster than {rival.name}")
-                            elif user > rival:  # rival wins
-                                print(f"WINNER: {rival.name} with {rival.score} {rival.get_unit()}!")
-                                if user.get_race_type() == "long_jump":
-                                    print(f"   {rival.name} jumped {rival.score - user.score:.2f}m further than {user.name}")
-                                else:
-                                    print(f"   {rival.name} was {user.score - rival.score:.2f}{rival.get_unit()} faster than {user.name}")
-                            else:
-                                print(f"TIE! Both athletes have the same score!")
-                        except TypeError as e:
-                            print(f"Error: {e}")
-                else:
-                    print(f"Participant '{rival_name}' not found. Please check the spelling.")
-        except ValueError:
-            print("Invalid ID format. Please enter numbers only.")
-        except Exception as e:
-            print(f"Error during comparison: {e}")
-
-
-
 try:
     muhammed = race_100meter("muhammed", 1245, 15.25, "red")
     jane = race_100meter("jane", 1787, 14.32, "blue")
@@ -196,8 +105,6 @@ try:
     sophia = race_100meter("sophia", 1008, 12.67, "yellow")
     hannah = race_100meter("hannah", 1009, 13.56, "blue")
 
-
-
     alex = race_300meter("alex", 2578, 30.25, "red")
     ryan = race_300meter("ryan", 2384, 38, "pink")
     emily = race_300meter("emily", 2002, 37.67, "blue")
@@ -210,9 +117,6 @@ try:
     david = race_300meter("david", 2008, 37.66, "yellow")
     lily = race_300meter("lily", 2009, 38.54, "blue")
     
-
-
-
     michael = race_400mrelay("michael", 3384, 10.20, "pink", 1)
     ava = race_400mrelay("ava", 3002, 12.32, "pink", 1)
     jason_relay = race_400mrelay("jason", 3003, 11.45, "pink", 1)
@@ -249,10 +153,6 @@ try:
     oliver.add_teammate(samuel)
     oliver.add_teammate(julia)
 
-
-
-
-
     ted = race_longjump("ted", 4456, 4.15, "red")
     jayson = race_longjump("jayson", 4236, 6.21, "red")
     mel = race_longjump("mel", 4236, 5.87, "red")
@@ -272,12 +172,9 @@ try:
     autumn = race_longjump("autumn", 4008, 5.98, "yellow")
     samantha = race_longjump("samantha", 4009, 4.99, "yellow")
     
-
-
 except (ValueError, TypeError) as e:
     print(f"Error creating participants: {e}")
     exit(1)
-
 
 participants_dict = {}
 participants_by_race = {
@@ -286,9 +183,6 @@ participants_by_race = {
     "4x100m_relay": [],
     "long_jump": []
 }
-
-
-
 
 for participant in [muhammed, jane, terry, ken, bob, alice, priya, daniel, maria, james, chloe, ethan, sophia, hannah,
                    alex, ryan, emily, noah, grace, jack, olivia, ben, sarah, david, lily,
@@ -301,20 +195,12 @@ for participant in [muhammed, jane, terry, ken, bob, alice, priya, daniel, maria
     if race_type in participants_by_race:
         participants_by_race[race_type].append(participant)
 
-
-
-
 print("LEADERBOARD MANAGEMENT SYSTEM")
 print("")
-
-
-
 
 logout = False
 user = race_100meter("default", 1000, 22, "red")
 print(f"Sample athlete: {user.name} (ID: {user.id}, Score: {user.score} {user.get_unit()}, House: {user.house})")
-
-
 
 while logout == False:
     print("\nwhat would you like to do?")
@@ -324,9 +210,6 @@ while logout == False:
     print("4. Exit")
     choice = input("\nEnter your choice (1-4): ")
     
-
-
-
     if choice == "1":
         try:
             result = register()
@@ -334,9 +217,6 @@ while logout == False:
             
             if match == "4x100mrelay":
                 user = RaceFactory.create_race(match, new_name, new_id, new_score, new_house, 5)
-                
-                # Create individual runner objects and add them as teammates
-                runner1 = race_400mrelay(new_name, new_id, new_score, new_house, 5)
                 
                 if t2 and s2:
                     runner2 = race_400mrelay(t2, 3129, s2, new_house, 5)
@@ -377,25 +257,95 @@ while logout == False:
             print(f"\nError during registration: {e}")
             continue
     
-
-
-
     elif choice == "2":
-        check()
+        try:
+            user_ID = input("Please insert your ID: ")
+            if int(user_ID) != int(user.id):
+                print("Non-existent UID")
+            else:
+                print("")
+                user.getname()
+                user.getid()
+                user.gethouse()
+                user.getscore()
+                if 3000 <= int(user_ID) < 4000 and isinstance(user, race_400mrelay):
+                    user.getteam()
+                    print("\nTeammates:")
+                    for i, teammate in enumerate(user.teammates, 1):
+                        print(f"   {i}. {teammate.name} - Score: {teammate.score} {teammate.get_unit()}")
+                print("")
+        except ValueError:
+            print("Invalid ID format. Please enter numbers only.")
     
-
-
-
     elif choice == "3":
-        comparison()
+        try:
+            user_ID = input("Please insert your ID: ")
+            if int(user_ID) != int(user.id):
+                print("Non-existent UID")
+            else:
+                same_race_participants = [p for p in participants_by_race.get(user.get_race_type(), []) if p.name != user.name]
+                
+                if isinstance(user, race_400mrelay) and user.teammates:
+                    for teammate in user.teammates:
+                        if teammate not in same_race_participants and teammate.name != user.name:
+                            same_race_participants.append(teammate)
+                
+                if not same_race_participants:
+                    print(f"\nNo other participants found in {user.get_race_type()} to compare with")
+                    continue
+                
+                print(f"\nAvailable {user.get_race_type()} participants to compare:")
+                print("-" * 50)
+                for i, p in enumerate(same_race_participants, 1):
+                    print(f"{i}. {p.name:15}\tScore: {p.score:6.2f} {p.get_unit():5}\tHouse: {p.house}")
+                
+                rival_name = input("\nPlease enter the name of the person you'd like to compare: ")
+                rival = participants_dict.get(rival_name.lower())
+                
+                if rival:
+                    if not user.can_compare(rival):
+                        print(f"\nCannot compare {user.get_race_type()} with {rival.get_race_type()}!")
+                        print(f"   {user.name} participates in {user.get_race_type()} ({user.score} {user.get_unit()})")
+                        print(f"   {rival.name} participates in {rival.get_race_type()} ({rival.score} {rival.get_unit()})")
+                        print("   You can only compare participants from the same event.")
+                    else:
+                        comparison_result = user.__eq__(rival)
+                        print(f"\nComparison result: {comparison_result}")
+                        
+                        try:
+                            print("")
+                            print(f"{user.name} ({user.get_race_type()}): {user.score} {user.get_unit()}")
+                            print(f"{rival.name} ({rival.get_race_type()}): {rival.score} {rival.get_unit()}")
+                            print("")
+                            
+                            # USING POLYMORPHISM - using the overloaded operators!
+                            if user < rival:  # user wins if they are "less than" rival (lower time for track, higher distance for long jump)
+                                print(f"WINNER: {user.name} with {user.score} {user.get_unit()}!")
+                                if user.get_race_type() == "long_jump":
+                                    print(f"   {user.name} jumped {user.score - rival.score:.2f}m further than {rival.name}")
+                                else:
+                                    # For track, user has lower (better) score, so rival.score - user.score is positive
+                                    print(f"   {user.name} was {rival.score - user.score:.2f}{user.get_unit()} faster than {rival.name}")
+                            elif user > rival:  # rival wins
+                                print(f"WINNER: {rival.name} with {rival.score} {rival.get_unit()}!")
+                                if user.get_race_type() == "long_jump":
+                                    print(f"   {rival.name} jumped {rival.score - user.score:.2f}m further than {user.name}")
+                                else:
+                                    print(f"   {rival.name} was {user.score - rival.score:.2f}{rival.get_unit()} faster than {user.name}")
+                            else:
+                                print(f"TIE! Both athletes have the same score!")
+                        except TypeError as e:
+                            print(f"Error: {e}")
+                else:
+                    print(f"Participant '{rival_name}' not found. Please check the spelling.")
+        except ValueError:
+            print("Invalid ID format. Please enter numbers only.")
+        except Exception as e:
+            print(f"Error during comparison: {e}")
     
-
-
     elif choice == "4":
         logout = True
         print("exiting")
     
-
-
     else:
         print("Invalid choice. Please enter 1, 2, 3, or 4")
