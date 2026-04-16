@@ -118,10 +118,8 @@ def comparsion():
             if int(user_ID) != int(user.id):
                 print("Non-existent UID")
             else:
-                # Show available participants including teammates if user is in relay
                 same_race_participants = [p for p in participants_by_race.get(user.get_race_type(), []) if p.name != user.name]
                 
-                # If user is a relay team member, also show other relay members
                 if isinstance(user, race_400mrelay) and user.teammates:
                     for teammate in user.teammates:
                         if teammate not in same_race_participants and teammate.name != user.name:
@@ -155,24 +153,22 @@ def comparsion():
                             print(f"{rival.name} ({rival.get_race_type()}): {rival.score} {rival.get_unit()}")
                             print("")
                             
-                            if user.get_race_type() == "long_jump":
-                                if user.score > rival.score:
-                                    print(f"WINNER: {user.name} with {user.score} {user.get_unit()}!")
+                            # USING POLYMORPHISM - using the overloaded operators!
+                            if user < rival:  # user wins if they are "less than" rival
+                                print(f"WINNER: {user.name} with {user.score} {user.get_unit()}!")
+                                if user.get_race_type() == "long_jump":
                                     print(f"   {user.name} jumped {user.score - rival.score:.2f}m further than {rival.name}")
-                                elif rival.score > user.score:
-                                    print(f"WINNER: {rival.name} with {rival.score} {rival.get_unit()}!")
+                                else:
+                                    # For track, user has lower (better) score, so rival.score - user.score is positive
+                                    print(f"   {user.name} was {rival.score - user.score:.2f}{user.get_unit()} faster than {rival.name}")
+                            elif user > rival:  # rival wins
+                                print(f"WINNER: {rival.name} with {rival.score} {rival.get_unit()}!")
+                                if user.get_race_type() == "long_jump":
                                     print(f"   {rival.name} jumped {rival.score - user.score:.2f}m further than {user.name}")
                                 else:
-                                    print(f"TIE! Both athletes jumped the same distance!")
-                            else:
-                                if user.score < rival.score:
-                                    print(f"WINNER: {user.name} with {user.score} {user.get_unit()}!")
-                                    print(f"   {user.name} was {rival.score - user.score:.2f}{user.get_unit()} faster than {rival.name}")
-                                elif rival.score < user.score:
-                                    print(f"WINNER: {rival.name} with {rival.score} {rival.get_unit()}!")
                                     print(f"   {rival.name} was {user.score - rival.score:.2f}{rival.get_unit()} faster than {user.name}")
-                                else:
-                                    print(f"TIE! Both athletes finished with the same time!")
+                            else:
+                                print(f"TIE! Both athletes have the same score!")
                         except TypeError as e:
                             print(f"Error: {e}")
                 else:
