@@ -1,4 +1,5 @@
 LEADERBOARD SYSTEM
+
 This is a program where we apply concepts including Abstraction, Encapsulation, Modularity, Abstract Data Type and such in the classes when setting the data structure.
 
 function:
