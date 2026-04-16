@@ -1,0 +1,39 @@
+Heap Sort Algorithm Implementation
+This repository contains a Python implementation of the Heap Sort algorithm (heap.py). Heap Sort is an efficient, comparison-based sorting algorithm that leverages the binary heap data structure. It is known for its O(n log n) time complexity and O(1) auxiliary space complexity, making it a suitable choice for scenarios where memory is a constraint or predictable performance is required.
+
+
+Introduction
+Heap Sort is a sorting algorithm that divides its input into a sorted and an unsorted region, and it iteratively shrinks the unsorted region by extracting the largest element and moving it to the sorted region. The core idea is to transform the list into a max-heap, which is a complete binary tree where every parent node is greater than or equal to its children. Once the heap is built, the largest element (at the root) is swapped with the last element of the heap, and the heap is then re-heapified with one less element.
+
+How Heap Sort Works
+The algorithm consists of two main phases:
+1	Build Max-Heap: Rearrange the input array into a max-heap. This means that for every parent node i, the value of arr[i] is greater than or equal to the values of its children arr[2*i + 1] and arr[2*i + 2].
+2	Sort: Repeatedly extract the maximum element from the heap (which is always the root), swap it with the last element of the heap, and reduce the heap size by one. Then, re-heapify the root to maintain the max-heap property.
+
+Algorithm Steps
+The heap.py script implements the following functions:
+
+•	heap(arr, n, i): This function is responsible for heapifying a subtree rooted with node i. It assumes that the subtrees are already heapified. n is the size of the heap.
+•	heapSort(arr): This is the main function that implements the Heap Sort algorithm. It first builds a max-heap from the input array and then repeatedly extracts elements to sort the array.
+
+Characteristics
+| Feature           | Description
+| Time Complexity| O(n log n) in all cases (best, average, worst) [2] |
+|Space Complexity| O(1) (in-place sorting) [2] |
+|Stability     | Not stable (relative order of equal elements might change) [2] |
+
+Real-Life Applications
+Heap Sort and the underlying heap data structure are widely used in various computing scenarios due to their efficiency and predictability:
+
+
+Usage
+To run the Heap Sort algorithm on the default array or your own data, execute the Python script:
+
+python3 heap.py
+
+The script will print the sorted array to the console.
+
+
+
+
+
