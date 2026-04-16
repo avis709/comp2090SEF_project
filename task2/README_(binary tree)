@@ -1,0 +1,62 @@
+Binary Tree Traversal Example
+This repository contains a simple Python script (sort.py) demonstrating the fundamental concepts of binary tree data structures and their various traversal methods: Preorder, Inorder, and Postorder. This code is designed for educational purposes to illustrate how nodes in a tree can be visited in different sequences.
+
+Table of Contents
+•	Introduction
+•	Tree Structure
+•	Traversal Methods
+◦	Preorder Traversal (Root-Left-Right)
+◦	Inorder Traversal (Left-Root-Right)
+◦	Postorder Traversal (Left-Right-Root)
+•	Real-Life Applications
+•	Usage
+
+Introduction
+Binary trees are hierarchical data structures where each node has at most two children, referred to as the left child and the right child. Tree traversals are processes for visiting each node in the tree exactly once in a systematic way. The sort.py script defines a Node class to represent tree nodes and implements methods for the three primary traversal types.
+
+Tree Structure
+The script manually constructs a small binary tree with the following structure:
+
+      1
+     / \
+    2   3
+   /   
+  4    
+
+Each node stores an integer key value. The left and right attributes point to its respective child nodes.
+
+Traversal Methods
+Preorder Traversal (Root-Left-Right)
+In preorder traversal, the root node is visited first, followed by a recursive traversal of the left subtree, and then a recursive traversal of the right subtree.
+
+Output for sort.py: 1 2 4 3
+
+Characteristics:
+•	Visit Order: Root -> Left Subtree -> Right Subtree
+•	Method: RootLeftRight()
+
+Inorder Traversal (Left-Root-Right)
+In inorder traversal, the left subtree is traversed first, then the root node is visited, and finally, the right subtree is traversed. For a Binary Search Tree (BST), inorder traversal yields nodes in non-decreasing order.
+
+Output for sort.py: 4 2 1 3
+
+Characteristics:
+•	Visit Order: Left Subtree -> Root -> Right Subtree
+•	Method: LeftRootRight()
+
+Postorder Traversal (Left-Right-Root)
+In postorder traversal, the left subtree is traversed first, then the right subtree is traversed, and finally, the root node is visited.
+
+Output for sort.py: 4 2 3 1
+
+Characteristics:
+•	Visit Order: Left Subtree -> Right Subtree -> Root
+•	Method: LeftRightRoot()
+
+Real-Life Applications
+Binary tree traversals are fundamental operations with various practical applications:
+
+Traversal Type     	      |Primary Use Case	
+Preorder	                |Copying/Saving Tree Structures	  Example Applications: Exporting file system directories, parsing expression trees in compilers, creating a prefix expression (Polish notation) [1].
+Inorder	Ordered Data      |Retrieval	                      Example Applications: Retrieving sorted data from a Binary Search Tree (e.g., dictionary lookups, sorted lists of items), generating infix expressions [1].
+Postorder	                |Deleting/Processing Dependents	  Example Applications: Deleting nodes in a tree (ensuring children are deleted before parent), evaluating postfix expressions (Reverse Polish notation) [1], memory deallocation for tree structures.
