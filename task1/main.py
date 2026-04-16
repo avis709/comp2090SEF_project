@@ -102,8 +102,8 @@ def arrange1(kind, place, extra, contact, isfinder, UID):
     
     for i in range(length):
         item = name[i]
-        item2 = id_list[i]
-        item3 = score[i]
+        item2 = id_list[i+1]
+        item3 = score[i+2]
         item4 = house[i]
         item5 = teamates[i*3]
         item6 = teamates[i*3+1]
@@ -122,6 +122,7 @@ def arrange1(kind, place, extra, contact, isfinder, UID):
                         
                         
     return main_array
+    name, id_list, score, house, teammates, rank
 
 def
 
@@ -194,6 +195,7 @@ def register():
             teammate3 = input(name:)
             print("please enter the name if the fourth runner") 
             teammate4 = input(name:)
+            team_num = 
             return new_name, new_id, new_score, new_house.upper(), teammate1, teammate2, teammate3, teammate4, "4x100mrelay"
              
         if contest == 4:
