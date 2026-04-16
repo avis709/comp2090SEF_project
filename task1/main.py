@@ -112,7 +112,7 @@ def check():
             print("Invalid ID format. Please enter numbers only.")
 
 
-def comparsion:
+def comparsion():
     try:
             user_ID = input("Please insert your ID: ")
             if int(user_ID) != int(user.id):
