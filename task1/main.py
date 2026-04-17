@@ -87,10 +87,10 @@ def comparison():
                             print(f"Error: {e}")
                 else:
                     print(f"Participant '{rival_name}' not found. Please check the spelling.")
-        except ValueError:
-            print("Invalid ID format. Please enter numbers only.")
-        except Exception as e:
-            print(f"Error during comparison: {e}")
+    except ValueError:
+        print("Invalid ID format. Please enter numbers only.")
+    except Exception as e:
+        print(f"Error during comparison: {e}")
 
 
 
