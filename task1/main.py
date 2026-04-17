@@ -75,7 +75,7 @@ def comparison():
                                     print(f"   {user.name} jumped {user.score - rival.score:.2f}m further than {rival.name}")
                                 else:
                                     print(f"   {user.name} was {rival.score - user.score:.2f}{user.get_unit()} faster than {rival.name}")
-                            elif user > rival:  # rival wins
+                            elif user > rival:  
                                 print(f"WINNER: {rival.name} with {rival.score} {rival.get_unit()}!")
                                 if user.get_race_type() == "long_jump":
                                     print(f"   {rival.name} jumped {rival.score - user.score:.2f}m further than {user.name}")
