@@ -60,3 +60,5 @@ Traversal Type     	      |Primary Use Case
 Preorder	                |Copying/Saving Tree Structures	  Example Applications: Exporting file system directories, parsing expression trees in compilers, creating a prefix expression (Polish notation) [1].
 Inorder	Ordered Data      |Retrieval	                      Example Applications: Retrieving sorted data from a Binary Search Tree (e.g., dictionary lookups, sorted lists of items), generating infix expressions [1].
 Postorder	                |Deleting/Processing Dependents	  Example Applications: Deleting nodes in a tree (ensuring children are deleted before parent), evaluating postfix expressions (Reverse Polish notation) [1], memory deallocation for tree structures.
+
+video introduction: https://youtu.be/9kHfDbu9k5U?si=QqyaXcrSO6O5O6jE
