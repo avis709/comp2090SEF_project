@@ -12,6 +12,8 @@ the steps loops when invalid input was detected(ex. inputting non extisting hous
 suggest possible fixes(write writting record that exceed human limits in long jump, suggest user to change the score
 
 how to use:
-download classes.py and main.py
+download classes.py and main.py and registration.py
 put them in the same folder
 run main.py
+
+video introduction for running program:  https://www.youtube.com/watch?v=tLe2-f6AcSk
