@@ -175,16 +175,6 @@ class race_400mrelay(race_rec):
         else:
             raise ValueError("Invalid teammate or team is full")
     
-    def __add__(self, other):
-        if isinstance(other, race_400mrelay):
-            return self._score + other._score
-        elif isinstance(other, (int, float)):
-            return self._score + other
-        return NotImplemented
-    
-    def __radd__(self, other):
-        return self.__add__(other)
-    
     def get_total_team_score(self):
         total = self._score
         for teammate in self._teammates:
