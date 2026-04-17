@@ -43,7 +43,7 @@ def comparison():
                 
                 if not same_race_participants:
                     print(f"\nNo other participants found in {user.get_race_type()} to compare with")
-                    continue
+                    #continue
                 
                 print(f"\nAvailable {user.get_race_type()} participants to compare:")
                 print("-" * 50)
